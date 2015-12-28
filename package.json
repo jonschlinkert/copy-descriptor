@@ -20,8 +20,13 @@
     "test": "mocha"
   },
   "devDependencies": {
+    "gulp-format-md": "^0.1.4",
     "mocha": "*"
   },
+  "keywords": [
+    "copy",
+    "descriptor"
+  ],
   "verb": {
     "related": {
       "list": [
@@ -31,6 +36,10 @@
         "is-plain-object",
         "isobject"
       ]
-    }
+    },
+    "plugins": [
+      "gulp-format-md"
+    ],
+    "layout": "default"
   }
 }
