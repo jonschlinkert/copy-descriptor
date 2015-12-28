@@ -1,0 +1,36 @@
+{
+  "name": "copy-descriptor",
+  "description": "Copy a descriptor from object A to object B",
+  "version": "0.1.0",
+  "homepage": "https://github.com/jonschlinkert/copy-descriptor",
+  "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
+  "repository": "jonschlinkert/copy-descriptor",
+  "bugs": {
+    "url": "https://github.com/jonschlinkert/copy-descriptor/issues"
+  },
+  "license": "MIT",
+  "files": [
+    "index.js"
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "devDependencies": {
+    "mocha": "*"
+  },
+  "verb": {
+    "related": {
+      "list": [
+        "is-accessor-descriptor",
+        "is-data-descriptor",
+        "is-descriptor",
+        "is-plain-object",
+        "isobject"
+      ]
+    }
+  }
+}
