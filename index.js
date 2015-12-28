@@ -23,42 +23,53 @@
  *     return Object.keys(this.cache).length;
  *   }
  * });
+ *
  * copy(App.prototype, 'count', 'len');
+ *
+ * // create an instance
  * var app = new App();
+ *
  * app.set('a', true);
  * app.set('b', true);
  * app.set('c', true);
+ *
  * console.log(app.count);
  * //=> 3
  * console.log(app.len);
  * //=> 3
  * ```
- * @param {Object} `receiver`
- * @param {Object} `provider`
- * @param {String} `name`
+ * @name copy
+ * @param {Object} `receiver` The target object
+ * @param {Object} `provider` The provider object
+ * @param {String} `from` The key to copy on provider.
+ * @param {String} `to` Optionally specify a new key name to use.
  * @return {Object}
  * @api public
  */
 
 module.exports = function copyDescriptor(receiver, provider, from, to) {
-  if (typeof provider === 'string') {
+  if (!isObject(provider)) {
     to = from;
     from = provider;
     provider = receiver;
   }
 
-  if (typeof from !== 'string') {
-    throw new TypeError('expected key to be a string.');
+  if (!isObject(receiver)) {
+    throw new TypeError('expected the first argument to be an object');
   }
+  if (!isObject(provider)) {
+    throw new TypeError('expected provider to be an object');
+  }
+
   if (typeof to !== 'string') {
     to = from;
   }
-
-  if (!isObject(receiver)) {
-    throw new TypeError('expected receiver to be an object.');
+  if (typeof from !== 'string') {
+    throw new TypeError('expected key to be a string');
   }
-  if (!isObject(provider)) {
-    throw new TypeError('expected provider to be an object.');
+
+  if (!(from in provider)) {
+    throw new Error('property "' + from + '" does not exist');
   }
 
   var val = Object.getOwnPropertyDescriptor(provider, from);
@@ -68,3 +79,4 @@ module.exports = function copyDescriptor(receiver, provider, from, to) {
 function isObject(val) {
   return {}.toString.call(val) === '[object Object]';
 }
+
