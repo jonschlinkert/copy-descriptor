@@ -48,16 +48,15 @@
  */
 
 module.exports = function copyDescriptor(receiver, provider, from, to) {
-  if (!isObject(provider)) {
+  if (!isObject(provider) && typeof provider !== 'function') {
     to = from;
     from = provider;
     provider = receiver;
   }
-
-  if (!isObject(receiver)) {
+  if (!isObject(receiver) && typeof receiver !== 'function') {
     throw new TypeError('expected the first argument to be an object');
   }
-  if (!isObject(provider)) {
+  if (!isObject(provider) && typeof provider !== 'function') {
     throw new TypeError('expected provider to be an object');
   }
 
